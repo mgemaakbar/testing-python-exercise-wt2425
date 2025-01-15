@@ -38,6 +38,10 @@ class SolveDiffusion2D:
         self.dt = None
 
     def initialize_domain(self, w=10., h=10., dx=0.1, dy=0.1):
+        assert isinstance(w, float), f"Expecting float type on w, got {type(w).__name__}"
+        assert isinstance(h, float), f"Expecting float type on h, got {type(h).__name__}"
+        assert isinstance(dx, float), f"Expecting float type on dx, got {type(dx).__name__}"
+        assert isinstance(dy, float), f"Expecting float type on dy, got {type(dy).__name__}"
         self.w = w
         self.h = h
         self.dx = dx
@@ -45,7 +49,10 @@ class SolveDiffusion2D:
         self.nx = int(w / dx)
         self.ny = int(h / dy)
 
-    def initialize_physical_parameters(self, d=4., T_cold=300, T_hot=700):
+    def initialize_physical_parameters(self, d=4., T_cold=300., T_hot=700.):
+        assert isinstance(d, float), f"Expecting float type on dy, got {type(d).__name__}"
+        assert isinstance(T_cold, float), f"Expecting float type on dy, got {type(T_cold).__name__}"
+        assert isinstance(T_hot, float), f"Expecting float type on dy, got {type(T_hot).__name__}"
         self.D = d
         self.T_cold = T_cold
         self.T_hot = T_hot
