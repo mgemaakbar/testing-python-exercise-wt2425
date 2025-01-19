@@ -69,6 +69,48 @@ FAILED tests/unit/test_diffusion2d_functions.py::test_initialize_physical_parame
 ============================== 1 failed in 0.44s ===============================
 Finished running tests!
 
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /home/akbar/Documents/SSE/testing-python-exercise-wt2425
+collected 1 item
+
+tests/unit/test_diffusion2d_functions.py F                               [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_set_initial_condition __________________________
+
+    def test_set_initial_condition():
+        """
+        Checks function SolveDiffusion2D.get_initial_function
+        """
+        solver = SolveDiffusion2D()
+        solver.w = 10.
+        solver.h = 11.
+        solver.dx = 0.1
+        solver.dy = 0.2
+        solver.nx = 100
+        solver.ny = 55
+        solver.D = 4
+        solver.T_cold = 301
+        solver.T_hot = 701
+    
+        res = solver.set_initial_condition()
+    
+        for i in range(100):
+            for j in range(55):
+                p2 = (i * 0.1 - 5) ** 2 + (j * 0.2 - 5) ** 2
+                if p2 < 2**2:
+                    assert res[i, j] == 701. # value inside the circle
+                else:
+>                   assert res[i, j] == 301.
+E                   assert 701.0 == 301.0
+
+tests/unit/test_diffusion2d_functions.py:57: AssertionError
+=========================== short test summary info ============================
+FAILED tests/unit/test_diffusion2d_functions.py::test_set_initial_condition
+============================== 1 failed in 0.31s ===============================
+Finished running tests!
+
 ### unittest log
 
 ============================= test session starts ==============================
@@ -99,7 +141,6 @@ tests/unit/test_diffusion2d_functions_unittest.py:13: AssertionError
 FAILED tests/unit/test_diffusion2d_functions_unittest.py::TestDiffusion2D::test_initialize_domain
 ============================== 1 failed in 0.41s ===============================
 Finished running tests!
-
 
 ============================= test session starts ==============================
 platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
