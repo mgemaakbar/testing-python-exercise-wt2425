@@ -47,6 +47,9 @@ def test_set_initial_condition():
     solver.T_hot = 701
 
     res = solver.set_initial_condition()
+
+    assert len(res) == 100
+    assert len(res[0]) == 55
     
     for i in range(100):
         for j in range(55):

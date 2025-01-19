@@ -45,6 +45,9 @@ class TestDiffusion2D(unittest.TestCase):
         self.solver.T_hot = 701
         res = self.solver.set_initial_condition()
         
+        self.assertEqual(len(res), 100)
+        self.assertEqual(len(res[0]), 55)
+
         for i in range(100):
             for j in range(55):
                 p2 = (i * 0.1 - 5) ** 2 + (j * 0.2 - 5) ** 2
