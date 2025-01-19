@@ -3,8 +3,6 @@ Tests for functions in class SolveDiffusion2D
 """
 
 from diffusion2d import SolveDiffusion2D
-import numpy as np
-
 
 def test_initialize_domain():
     """
@@ -13,7 +11,7 @@ def test_initialize_domain():
     solver = SolveDiffusion2D()
     solver.initialize_domain(w = 10., h = 11., dx = 0.1, dy = 0.2)
 
-    assert solver.nx == 100.
+    assert solver.nx == 100, "Expecting 100, found {solver.nx}"
     assert solver.ny == 55.
 
 
@@ -48,7 +46,6 @@ def test_set_initial_condition():
     solver.T_cold = 301
     solver.T_hot = 701
 
-    solver.initialize_physical_parameters()
     res = solver.set_initial_condition()
     
     for i in range(100):

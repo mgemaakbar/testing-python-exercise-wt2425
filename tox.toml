@@ -1,0 +1,12 @@
+requires = ["tox>=4"]
+env_list = ["a", "b"]
+
+[env.a]
+description = "Run all the tests (integration and unit) with pytest"
+deps = ["-rrequirements.txt"]   
+commands = [["python", "-m", "pytest"]]
+
+[env.b]
+description = "Run the unit tests written with unittest only"
+deps = ["-rrequirements.txt"]
+commands = [["python", "-m", "unittest", "discover", "-s", "tests/unit"]]
